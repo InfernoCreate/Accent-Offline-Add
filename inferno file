@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+
+<meta charset="UTF-8">
+<title>Accent Offline Add</title>
+
+<style>
+
+body {
+    background:#111;
+    color:white;
+    font-family:Arial;
+    height:100vh;
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+
+.container {
+
+    width:400px;
+    background:#222;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 25px cyan;
+
+}
+
+
+input, select {
+
+    width:90%;
+    padding:12px;
+    margin:10px;
+    border-radius:10px;
+    border:none;
+
+}
+
+
+button {
+
+    padding:12px 25px;
+    border:none;
+    border-radius:10px;
+    background:#00ffff;
+    cursor:pointer;
+
+}
+
+
+#infoBox {
+
+    display:none;
+    margin-top:20px;
+
+}
+
+
+.addBox {
+
+    background:#333;
+    padding:15px;
+    margin:10px;
+    border-radius:12px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container" id="main">
+
+
+<h2>Accent Offline Add</h2>
+
+<p style="color:#00ffff;">
+By Inferno
+</p>
+
+
+<input id="link" placeholder="Nhập link...">
+
+
+<select id="platform">
+
+<option>Vercel</option>
+<option>GitHub</option>
+
+</select>
+
+
+<br>
+
+<button onclick="showInput()">
+Add Link
+</button>
+
+
+
+<div id="infoBox">
+
+
+<h3>Code?</h3>
+
+
+<input id="name" placeholder="Add Code...">
+
+
+<button onclick="createBox()">
+Create
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+<script>
+
+
+function showInput(){
+
+
+let link =
+document.getElementById("link").value;
+
+
+if(link.trim()==""){
+
+alert("Nhập link trước!");
+
+return;
+
+}
+
+
+document.getElementById("infoBox")
+.style.display="block";
+
+
+}
+
+
+
+
+function createBox(){
+
+
+let name =
+document.getElementById("name").value;
+
+
+let platform =
+document.getElementById("platform").value;
+
+
+
+if(name.trim()==""){
+
+alert("Điền tên!");
+
+return;
+
+}
+
+
+
+// Ẩn giao diện
+
+document.getElementById("main")
+.style.display="none";
+
+
+
+// tạo loading
+
+let load =
+document.createElement("div");
+
+
+load.id="load";
+
+
+load.innerHTML="Loading...";
+
+
+
+document.body.appendChild(load);
+
+
+
+load.style.position="fixed";
+load.style.top="50%";
+load.style.left="50%";
+load.style.transform=
+"translate(-50%,-50%)";
+
+load.style.background="#222";
+load.style.padding="40px";
+load.style.borderRadius="20px";
+load.style.fontSize="30px";
+load.style.boxShadow="0 0 30px cyan";
+
+
+
+// 6 giây
+
+setTimeout(()=>{
+
+
+load.innerHTML="Add Success ✅";
+
+
+setTimeout(()=>{
+
+
+document.body.innerHTML=`
+
+<div class="container">
+
+<h2>Accent Offline Add</h2>
+
+<p style="color:#00ffff;">
+By Inferno
+</p>
+
+
+<div class="addBox">
+${platform}
+</div>
+
+
+<div class="addBox">
+${name}
+</div>
+
+
+
+
+
+</div>
+
+`;
+
+
+
+},1500);
+
+
+
+},6000);
+
+
+
+}
+
+
+</script>
+
+
+</body>
+</html>
